@@ -1,0 +1,146 @@
+#include <math.h>
+#include "math.h"
+
+
+#test abs_func
+ck_assert_int_eq(2, my_abs(2));
+ck_assert_int_eq(278194219, my_abs(-278194219));
+ck_assert_int_eq(0, my_abs(0));
+
+#test acos_func
+ck_assert_double_eq_tol(acos(0), my_acos(0), 1e-6);
+ck_assert_double_eq_tol(acos(1), my_acos(1), 1e-6);
+ck_assert_double_eq_tol(acos(-1), my_acos(-1), 1e-6);
+ck_assert_double_eq_tol(acos(-0.1583), my_acos(-0.1583), 1e-6);
+ck_assert_double_eq_tol(acos(0.942), my_acos(0.942), 1e-6);
+ck_assert_double_eq_tol(acos(0.999), my_acos(0.999), 1e-6);
+ck_assert_double_eq_tol(acos(1+1e-16), my_acos(1+1e-16), 1e-6);
+ck_assert_double_eq_tol(acos(0.001), my_acos(0.001), 1e-6);
+ck_assert_double_eq_tol(acos(1e-6), my_acos(1e-6), 1e-6);
+ck_assert_double_eq_tol(acos(-0.999), my_acos(-0.999), 1e-6);
+ck_assert_double_eq_tol(acos(-0.001), my_acos(-0.001), 1e-6);
+ck_assert_double_eq_tol(acos(-1e-6), my_acos(-1e-6), 1e-6);
+ck_assert_double_eq_tol(acos(-1-1e-16), my_acos(-1-1e-16), 1e-6);
+ck_assert_double_nan(my_acos(13.1));
+ck_assert_double_nan(my_acos(MY_INF));
+ck_assert_double_nan(my_acos(-MY_INF));
+ck_assert_double_nan(my_acos(MY_NAN));
+
+#test asin_func
+ck_assert_double_eq_tol(asin(0), my_asin(0), 1e-6);
+ck_assert_double_eq_tol(asin(1), my_asin(1), 1e-6);
+ck_assert_double_eq_tol(asin(-1), my_asin(-1), 1e-6);
+ck_assert_double_nan(my_asin(13.1));
+ck_assert_double_nan(my_asin(MY_INF));
+ck_assert_double_nan(my_asin(-MY_INF));
+ck_assert_double_nan(my_asin(MY_NAN));
+ck_assert_double_eq_tol(asin(-0.1583), my_asin(-0.1583), 1e-6);
+ck_assert_double_eq_tol(asin(0.942), my_asin(0.942), 1e-6);
+
+#test atan_func
+ck_assert_double_eq_tol(atan(0), my_atan(0), 1e-6);
+ck_assert_double_eq_tol(atan(2.145), my_atan(2.145), 1e-6);
+ck_assert_double_eq_tol(atan(341.145), my_atan(341.145), 1e-6);
+ck_assert_double_eq_tol(atan(-0.63132), my_atan(-0.63132), 1e-6);
+ck_assert_double_eq_tol(atan(MY_INF), my_atan(MY_INF), 1e-6);
+ck_assert_double_eq_tol(atan(-MY_INF), my_atan(-MY_INF), 1e-6);
+ck_assert_double_eq_tol(atan(100000000), my_atan(100000000), 1e-6);
+ck_assert_double_eq_tol(atan(-100000000), my_atan(-100000000), 1e-6);
+ck_assert_double_eq_tol(atan(-0.63132), my_atan(-0.63132), 1e-6);
+ck_assert_double_nan(my_atan(MY_NAN));
+
+#test ceil_func
+ck_assert_double_eq_tol(ceil(0), my_ceil(0), 1e-6);
+ck_assert_double_eq_tol(ceil(132.1231), my_ceil(132.1231), 1e-6);
+ck_assert_double_eq_tol(ceil(-12312.412342), my_ceil(-12312.412342), 1e-6);
+ck_assert_double_infinite(my_ceil(MY_INF));
+ck_assert_double_infinite(my_ceil(-MY_INF));
+ck_assert_double_nan(my_ceil(MY_NAN));
+
+#test cos_func
+ck_assert_double_eq_tol(cos(0), my_cos(0), 1e-6);
+ck_assert_double_eq_tol(cos(1.2), my_cos(1.2), 1e-6);
+ck_assert_double_eq_tol(cos(-0.12), my_cos(-0.12), 1e-6);
+ck_assert_double_nan(my_cos(MY_INF));
+ck_assert_double_nan(my_cos(-MY_INF));
+ck_assert_double_nan(my_cos(MY_NAN));
+
+#test exp_func
+ck_assert_ldouble_eq_tol(exp(0), my_exp(0), 1e-6);
+ck_assert_ldouble_eq_tol(exp(4), my_exp(4), 1e-6);
+ck_assert_ldouble_eq_tol(exp(12.14), my_exp(12.14), 1e-6);
+ck_assert_ldouble_eq_tol(exp(4.1245), my_exp(4.1245), 1e-6);
+ck_assert_ldouble_eq_tol(exp(-0.23532), my_exp(-0.23532), 1e-6);
+ck_assert_ldouble_eq_tol(exp(-4.532), my_exp(-4.532), 1e-6);
+ck_assert_ldouble_eq_tol(exp(-MY_INF), my_exp(-MY_INF), 1e-6);
+ck_assert_ldouble_infinite(my_exp(MY_INF));
+ck_assert_ldouble_nan(my_exp(MY_NAN));
+
+#test fabs_func
+ck_assert_double_eq_tol(fabs(0.0), my_fabs(0.0), 1e-6);
+ck_assert_double_eq_tol(fabs(-1.6283), my_fabs(-1.6283), 1e-6);
+ck_assert_double_eq_tol(fabs(-73627.992631), my_fabs(-73627.992631), 1e-6);
+ck_assert_double_eq_tol(fabs(93461293623.92321), my_fabs(93461293623.92321), 1e-6);
+ck_assert_double_infinite(my_fabs(MY_INF));
+ck_assert_double_infinite(my_fabs(-MY_INF));
+ck_assert_double_nan(my_fabs(MY_NAN));
+
+#test floor_func
+ck_assert_double_eq_tol(floor(0), my_floor(0), 1e-6);
+ck_assert_double_eq_tol(floor(132.1231), my_floor(132.1231), 1e-6);
+ck_assert_double_eq_tol(floor(-12312.412342), my_floor(-12312.412342), 1e-6);
+ck_assert_double_infinite(my_floor(MY_INF));
+ck_assert_double_infinite(my_floor(-MY_INF));
+ck_assert_double_nan(my_floor(MY_NAN));
+
+#test fmod_func
+ck_assert_double_eq_tol(fmod(132.21341, 65.12), my_fmod(132.21341, 65.12), 1e-6);
+ck_assert_double_eq_tol(fmod(-532.41, 15.8822), my_fmod(-532.41, 15.8822), 1e-6);
+ck_assert_double_eq_tol(fmod(532.41, -15.8822), my_fmod(532.41, -15.8822), 1e-6);
+ck_assert_double_nan(my_fmod(12.0, 0));
+ck_assert_double_nan(my_fmod(MY_INF, 2341.12));
+ck_assert_double_nan(my_fmod(-MY_INF, 2341.12));
+ck_assert_double_nan(my_fmod(MY_NAN, 2341.12));
+ck_assert_double_nan(my_fmod(233.211, MY_NAN));
+
+#test log_func
+ck_assert_double_eq_tol(log(93461293623.92321), my_log(93461293623.92321), 1e-6);
+ck_assert_double_nan(my_log(-1.6283));
+ck_assert_double_nan(my_log(-MY_INF));
+ck_assert_double_nan(my_log(-MY_NAN));
+ck_assert_double_infinite(my_log(MY_INF));
+ck_assert_double_infinite(my_log(0.0));
+
+#test pow_func
+ck_assert_ldouble_eq_tol(pow(12.1245, 4.1), my_pow(12.1245, 4.1), 1e-6);
+ck_assert_ldouble_eq_tol(pow(-2.1245, 4), my_pow(-2.1245, 4), 1e-6);
+ck_assert_ldouble_eq_tol(pow(-2.1245, 5), my_pow(-2.1245, 5), 1e-6);
+ck_assert_ldouble_eq_tol(pow(0, 31.2), my_pow(0, 31.2), 1e-6);
+ck_assert_ldouble_nan(my_pow(-0.23532, 1.4532));
+ck_assert_ldouble_nan(my_pow(MY_NAN, 1.4532));
+ck_assert_ldouble_infinite(my_pow(MY_INF, 1.4532));
+ck_assert_ldouble_infinite(my_pow(-MY_INF, 1.4532));
+
+#test sin_func
+ck_assert_double_eq_tol(sin(0), my_sin(0), 1e-6);
+ck_assert_double_eq_tol(sin(1.2), my_sin(1.2), 1e-6);
+ck_assert_double_eq_tol(sin(-0.12), my_sin(-0.12), 1e-6);
+ck_assert_double_nan(my_sin(MY_INF));
+ck_assert_double_nan(my_sin(-MY_INF));
+ck_assert_double_nan(my_sin(MY_NAN));
+
+#test sqrt_func
+ck_assert_double_eq_tol(sqrt(0), my_sqrt(0), 1e-6);
+ck_assert_double_eq_tol(sqrt(132.1231), my_sqrt(132.1231), 1e-6);
+ck_assert_double_infinite(my_sqrt(MY_INF));
+ck_assert_double_nan(my_sqrt(-12312.412342));
+ck_assert_double_nan(my_sqrt(-MY_INF));
+ck_assert_double_nan(my_sqrt(MY_NAN));
+
+#test tan_func
+ck_assert_double_eq_tol(tan(0), my_tan(0), 1e-6);
+ck_assert_double_eq_tol(tan(1.2), my_tan(1.2), 1e-6);
+ck_assert_double_eq_tol(tan(-0.12), my_tan(-0.12), 1e-6);
+ck_assert_double_nan(my_tan(MY_NAN));
+ck_assert_double_nan(my_tan(MY_INF));
+ck_assert_double_nan(my_tan(-MY_INF));
